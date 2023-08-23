@@ -2,10 +2,7 @@ package com.example.reservation.member.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,7 +17,9 @@ public class Member {
     private int id;
 
     private String name;
+
     private String email;
+
     private String phone;
     private String password;
     private LocalDateTime registerDate;

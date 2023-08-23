@@ -1,4 +1,4 @@
-package com.example.reservation.member.exception;
+package com.example.reservation.exception;
 
 public class UserNotFoundException extends RuntimeException{
     public UserNotFoundException() {

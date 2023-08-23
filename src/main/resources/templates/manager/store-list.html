@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .list table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .list table th, .list table td {
+            border:solid 1px #000;
+        }
+        .list button{
+
+        }
+    </style>
+</head>
+<body>
+<h1>내 상점 관리</h1>
+<div th:replace="/fragments/layout.html :: fragment-manager-body-menu"></div>
+<div class="list">
+    <table>
+        <thead>
+        <tr>
+            <th> 상점명</th>
+            <th>상점 위치</th>
+            <th>상점 설명</th>
+            <th>비고</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="x : ${storeList}">
+            <td th:text="${x.name}" ></td>
+            <td th:text="${x.location}" ></td>
+            <td th:text="${x.description}" ></td>
+            <td><button>수정</button><button>삭제</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

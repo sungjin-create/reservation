@@ -1,7 +1,7 @@
 package com.example.reservation.member.service;
 
 import com.example.reservation.member.entity.Member;
-import com.example.reservation.member.exception.UserNotFoundException;
+import com.example.reservation.exception.UserNotFoundException;
 import com.example.reservation.member.model.JoinMemberInput;
 import com.example.reservation.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -55,7 +55,7 @@ public class MemberServiceImpl implements MemberService{
 
         Optional<Member> optionalMember = memberRepository.findByEmail(username);
 
-        if (!optionalMember.isPresent()) {
+        if (optionalMember.isEmpty()) {
             throw new UserNotFoundException();
         }
 

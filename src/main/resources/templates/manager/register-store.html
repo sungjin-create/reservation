@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>상점 등록</h1>
+    <div th:replace="/fragments/layout.html :: fragment-manager-body-menu"></div>
+
+    <form method="post" action="/manager/store/register">
+
+        <div>
+            <input type="text" name="name" placeholder="상점 이름 입력" required/>
+        </div>
+        <div>
+            <input type="text" name="location" placeholder="location 입력" required/>
+        </div>
+        <div>
+            <input type="text" name="description" placeholder="description 입력" required/>
+        </div>
+        <div>
+            <button type="submit"> 등록하기 </button>
+        </div>
+    </form>
+</body>
+</html>

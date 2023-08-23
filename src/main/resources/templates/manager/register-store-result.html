@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="/fragments/layout.html :: fragment-manager-body-menu"></div>
+    <div th:if="${result}">
+        <h1>상점등록 완료</h1>
+    </div>
+
+    <div th:if="${result eq false}">
+        <h1>상점등록 실패</h1>
+        <h2>동일한 이름, 위치의 상점이 존재합니다.</h2>
+    </div>
+</body>
+</html>

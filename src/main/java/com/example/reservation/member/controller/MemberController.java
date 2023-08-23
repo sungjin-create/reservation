@@ -20,7 +20,7 @@ public class MemberController {
 
     private final MemberServiceImpl memberService;
 
-
+    //로그인 페이지
     @RequestMapping("/member/login")
     public ModelAndView loginPage() {
         ModelAndView modelAndView = new ModelAndView();
@@ -28,6 +28,7 @@ public class MemberController {
         return modelAndView;
     }
 
+    //
     @GetMapping("/member/course")
     public ModelAndView coursePage() {
         ModelAndView modelAndView = new ModelAndView();
@@ -35,7 +36,7 @@ public class MemberController {
         return modelAndView;
     }
 
-
+    //회원가입 페이지
     @GetMapping("/member/register")
     public ModelAndView joinPage() {
 
@@ -66,5 +67,14 @@ public class MemberController {
             return new ResponseEntity<>(errorList, HttpStatus.BAD_REQUEST);
         }
         return null;
+    }
+
+    //접근 권한이 없을때 페이지 뷰 설정
+    @GetMapping("/member/access-denied")
+    public ModelAndView showAccessDeniedPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/member/access-denied");
+
+        return modelAndView;
     }
 }
