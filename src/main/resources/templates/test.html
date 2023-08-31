@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+<script>
+    $(function () {
+        // Geolocation API에 액세스할 수 있는지를 확인
+        if (navigator.geolocation) {
+            //위치 정보를 얻기
+            navigator.geolocation.getCurrentPosition(function (pos) {
+                document.getElementById("latitude").value = pos.coords.latitude;
+                document.getElementById("longitude").value = pos.coords.longitude;
+            });
+        }
+    });
+</script>
+
+<select>
+    <option value="0" th:if(변수.equal("0")){selected="selected"<%}%>>전체조회</option>
+    <option value="1" if(변수.equal("1")){selected="selected"<%}%>>전체공지</option>
+    <option value="2" if(변수.equal("2")){%>selected="selected"<%}%>>자유게시판</option>
+</select>
+
+<div>
+    <form method="get">
+        <select name="order">
+            <option value="default">정렬 선택</option>
+            <option value="name" th:if="${}">가나다순</option>
+            <option value="distance">거리순</option>
+            <option value="grade">평점순</option>
+        </select>
+        <input type="hidden" value="" id="latitude" name="myLatitude">
+        <input type="hidden" value="" id="longitude" name="myLongitude">
+        <button type="submit">적용</button>
+    </form>
+</div>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,9 +1,12 @@
 package com.example.reservation.store.entity;
 
-import com.example.reservation.member.entity.Member;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -12,6 +15,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 public class Store {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -19,5 +23,11 @@ public class Store {
     private String name;
     private String location;
     private String description;
+    private boolean openYn;
+    private double grade;
+    private int countReview;
+    private LocalDateTime regDt;
+    private double latitude;
+    private double longitude;
 
 }

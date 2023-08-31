@@ -17,13 +17,13 @@ public class Member {
     private int id;
 
     private String name;
-
     private String email;
-
     private String phone;
     private String password;
     private LocalDateTime registerDate;
+    private double latitude;
+    private double longitude;
 
-    private boolean isManger;
+    private boolean managerYn;
 
 }

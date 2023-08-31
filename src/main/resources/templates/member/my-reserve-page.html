@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>reservePage</title>
+
+    <style>
+        .list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .list table th, .list table td {
+            border: solid 1px #000;
+        }
+
+        .list button {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<h1>예약 현황</h1>
+<div th:replace="/fragments/layout.html :: fragment-member-body-menu"></div>
+
+
+<div class="list">
+    <table>
+        <thead>
+        <tr>
+            <th>상점명</th>
+            <th>인원수</th>
+            <th>전화번호</th>
+            <th>예약 시간</th>
+            <th>마감 시간</th>
+            <th>예약 상태</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${result}" th:each="x:${reserveList}">
+            <td th:text="${x.store.name}"></td>
+            <td th:text="${x.numberOfPeople}"></td>
+            <td th:text="${x.phone}"></td>
+            <td th:text="${x.reserveDt}"></td>
+            <td th:text="${x.deadline}"></td>
+            <td>
+                <span th:if="${x.status.equals('REQUEST')}">예약 수락 대기중입니다</span>
+                <span th:if="${x.status.equals('ACCEPT')}">예약 완료!</span>
+                <span th:if="${x.status.equals('REFUSE')}">예약 거절</span>
+            </td>
+        </tr>
+        <tr th:if="${result eq false}">
+            <td colspan="6" style="text-align: center">
+                예약 사항이 없습니다.
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

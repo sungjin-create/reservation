@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>reservation</title>
+</head>
+<body>
+<h1>예약하기</h1>
+<div th:replace="/fragments/layout.html :: fragment-member-body-menu"></div>
+
+<form method="post" action="/member/reserve/store">
+    <div>
+        <input type="number" name="numberOfPeople" placeholder="인원수를 적어주세요" required/>
+    </div>
+    <div>
+        <input type="time" name="reserveDt" placeholder="예약 시간을 적어주세요" required/>
+    </div>
+    <div>[주의] 반드시 예약 10분 전까지 오셔야 합니다.</div>
+    <input type="hidden" name="storeId" th:value="${storeId}">
+    <div style="margin-left: 50px">
+        <button type="submit">예약하기</button>
+    </div>
+</form>
+</body>
+</html>

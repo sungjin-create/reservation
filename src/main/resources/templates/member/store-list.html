@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>상점 리스트</title>
+    <style>
+        .list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .list table th, .list table td {
+            border: solid 1px #000;
+        }
+
+        .list button {
+            display: inline-block;
+        }
+
+        .pager {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pager a.on {
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>상점 리스트</h1>
+<div th:replace="/fragments/layout.html :: fragment-member-body-menu"></div>
+
+
+<script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+<script>
+    $(function () {
+        // Geolocation API에 액세스할 수 있는지를 확인
+        if (navigator.geolocation) {
+            //위치 정보를 얻기
+            navigator.geolocation.getCurrentPosition(function (pos) {
+                document.getElementById("latitude").value = pos.coords.latitude;
+                document.getElementById("longitude").value = pos.coords.longitude;
+            });
+        }
+    });
+</script>
+
+<div>
+    <form method="get">
+        <select name="order">
+            <option value="default">정렬 선택</option>
+            <option value="name" th:selected="${order.equals('name')}" selected>가나다순</option>
+            <option value="distance" th:selected="${order.equals('distance')}" selected>거리순</option>
+            <option value="grade" th:selected="${order.equals('grade')}" selected>평점순</option>
+        </select>
+        <input type="hidden" value="" id="latitude" name="myLatitude">
+        <input type="hidden" value="" id="longitude" name="myLongitude">
+        <button type="submit">적용</button>
+    </form>
+</div>
+
+<br>
+
+<div class="list">
+    <table>
+        <thead>
+        <tr>
+            <th>상점명</th>
+            <th>상점 위치</th>
+            <th>상점 설명</th>
+            <th>거리</th>
+            <th>평점</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="x : ${storeList}">
+            <td>
+                <a th:text="${x.name}"
+                   th:href="${'/member/detail/store/' + x.id}">
+                </a>
+            </td>
+            <td th:text="${x.location}"></td>
+            <td th:text="${x.description}"></td>
+            <td th:text="${x.distance}"></td>
+            <td th:if="${x.countReview == 0}">
+                <span>리뷰없음</span>
+            </td>
+            <td th:if="${x.countReview != 0}" th:text="${x.grade}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="pager" th:utext="${pager}"></div>
+</div>
+
+</body>
+</html>

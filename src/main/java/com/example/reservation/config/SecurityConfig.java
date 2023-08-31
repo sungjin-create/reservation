@@ -49,9 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(
-                        "/"
+                        "/",
+                        "/test/**"
                         , "/member/register"
-                        , "/member/email-auth"
+                        , "/kiosk/**"
                 )
                 .permitAll();
 
@@ -68,8 +69,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true);
 
         http.authorizeRequests()
-                .antMatchers("/manager/**","/member/**")
+                .antMatchers("/manager/**","/member/**", "/reserve/**")
                 .hasAuthority("ROLE_MANAGER");
+        http.authorizeRequests()
+                .antMatchers("/member/**", "/reserve/**")
+                .hasAuthority("ROLE_MEMBER");
 
         http.exceptionHandling().accessDeniedPage("/member/access-denied");
 

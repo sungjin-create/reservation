@@ -12,9 +12,29 @@
             border:solid 1px #000;
         }
         .list button{
-
+            display: inline-block;
+        }
+        .pager {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .pager a.on {
+            font-weight: bold;
+            color: red;
         }
     </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+
+            $('form[name=deleteForm]').on('submit', function() {
+                if (!confirm(' 삭제하시겠습니까? ')) {
+                    return false;
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 <h1>내 상점 관리</h1>
@@ -23,21 +43,45 @@
     <table>
         <thead>
         <tr>
-            <th> 상점명</th>
+            <th>상점명</th>
             <th>상점 위치</th>
             <th>상점 설명</th>
-            <th>비고</th>
+            <th>공개 여부</th>
+            <th>수정</th>
+            <th>삭제</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="x : ${storeList}">
-            <td th:text="${x.name}" ></td>
-            <td th:text="${x.location}" ></td>
-            <td th:text="${x.description}" ></td>
-            <td><button>수정</button><button>삭제</button></td>
+
+            <form name="updateForm" method="post" action="/manager/store/update/page">
+                <td th:text="${x.name}"></td>
+                <td th:text="${x.location}" name="location" th:value="${x.location}"></td>
+                <td th:text="${x.description}" name="description" th:value="${x.description}"></td>
+                <td>
+                    <p th:if="${x.openYn}">YES</p>
+                    <p th:if="${x.openYn eq false}">NO</p>
+                </td>
+                <input type="hidden" name="id" th:value="${x.id}">
+                <input type = hidden name="name" th:value="${x.name}">
+                <input type = hidden name="location" th:value="${x.location}">
+                <input type = hidden name="description" th:value="${x.description}">
+                <input type = hidden name="openYn" th:value="${x.openYn}">
+                <td>
+                    <div style="text-align: center"><button type = submit>수정</button></div>
+                </td>
+            </form>
+                <td>
+                    <form name="deleteForm" method="post" action="/manager/store/delete">
+                        <input type="hidden" name="id" th:value="${x.id}"/>
+                        <div style="text-align: center"><button type = submit>삭제</button></div>
+                    </form>
+                </td>
         </tr>
         </tbody>
     </table>
+    <div class="pager" th:utext="${pager}"></div>
 </div>
+
 </body>
 </html>

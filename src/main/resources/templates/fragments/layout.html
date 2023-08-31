@@ -4,35 +4,80 @@
     <meta charset="UTF-8">
     <title>reservation</title>
 </head>
+
+
 <body>
 
     <div th:fragment="fragment-body-menu">
         <div>
+            <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+            <script>
+                $(function () {
+                    // Geolocation API에 액세스할 수 있는지를 확인
+                    if (navigator.geolocation) {
+                        //위치 정보를 얻기
+                        navigator.geolocation.getCurrentPosition(function (pos) {
+                            document.getElementById("latitude").value = pos.coords.latitude;
+                            document.getElementById("longitude").value = pos.coords.longitude;
+                        });
+                    }
+                });
+
+                function locationCheck() {
+                    document.getElementById('location').submit();
+                }
+            </script>
+            <form method="get" action="/member/store/list" id="location">
+                <input type="hidden" id="latitude" name="myLatitude" value="0.0">
+                <input type="hidden" id="longitude" name="myLongitude" value="0.0">
+            </form>
+            <a href="/">홈</a>
+            |
             <a href="/member/register">회원 가입</a>
             |
             <a href="/member/login">로그인</a>
             |
             <a href="/member/logout">로그아웃</a>
             |
-            <a href="/member/store-list">상점 리스트</a>
+            <a href="#" onclick="locationCheck()">상점 리스트</a>
+            |
+            <a href="/member/reserve/store/my">내 예약 현황</a>
+            |
+            <a href="/manager/store/list" style="position: relative; text-align: left">상점 관리(상점 매니저용)</a>
 
-            <a href="/manager/store/list" style="position: relative; text-align: left">상점 관리</a>
 
         </div>
         <hr/>
     </div>
 
-
-
     <div th:fragment="fragment-manager-body-menu">
+        <a href="/"> 홈 </a>
+        |
         <a href="/manager/store/list"> 상점 목록 </a>
         |
         <a href="/manager/store/register"> 상점 등록 </a>
+        |
+        <a href="/manager/reserve/page">예약 요청 사항</a>
+        |
+        <a href="/manager/reserve/history">예약 히스토리</a>
         <br/>
         <hr/>
     </div>
 
-
+    <div th:fragment="fragment-member-body-menu">
+        <div>
+            <a href="/">홈</a>
+            |
+            <a href="/member/logout">로그아웃</a>
+            |
+            <a href="/member/store/list">상점 리스트</a>
+            |
+            <a href="/member/reserve/store/my">내 예약 현황</a>
+            |
+            <a href="/member/review/page">리뷰 작성하기</a>
+        </div>
+        <hr/>
+    </div>
 
 </body>
 </html>

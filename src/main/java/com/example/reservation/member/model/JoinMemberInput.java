@@ -16,6 +16,6 @@ public class JoinMemberInput {
     private String email;
     private String phone;
     private String password;
-    private int isManager;
+    private boolean managerYn;
 
 }

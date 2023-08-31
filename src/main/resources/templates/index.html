@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>메인 페이지</title>
+    <style>
+        .list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
+        .list table th, .list table td {
+            border: solid 1px #000;
+        }
+
+        .list button {
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
 <h1>메인 페이지 </h1>
 
 <div th:replace="/fragments/layout.html :: fragment-body-menu"></div>
+
+
+
 </body>
 </html>

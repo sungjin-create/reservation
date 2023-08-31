@@ -17,12 +17,8 @@
     <div th:if="${result eq false}">
         <h1>회원 가입 결과</h1>
         <div th:replace="/fragments/layout.html :: fragment-body-menu"></div>
-
-
+        <p>동일한 이메일 혹은 핸드폰이 있습니다.</p>
         <p>회원 가입에 실패하였습니다.</p>
     </div>
-
-
-
 </body>
 </html>

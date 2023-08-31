@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>예약 히스토리</title>
+    <style>
+        .list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .list table th, .list table td {
+            border: solid 1px #000;
+        }
+
+        .list button {
+            display: inline-block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>예약 요청 이력</h1>
+<div th:replace="/fragments/layout.html :: fragment-manager-body-menu"></div>
+
+<div class="list">
+    <table>
+        <thead>
+        <tr>
+            <th>상점명</th>
+            <th>인원수</th>
+            <th>전화번호</th>
+            <th>예약 시간</th>
+            <th>마감 시간</th>
+            <th>예약 상태</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="x:${reserveList}" >
+            <td th:text="${x.store.name}"></td>
+            <td th:text="${x.numberOfPeople}"></td>
+            <td th:text="${x.phone}"></td>
+            <td th:text="${x.reserveDt}"></td>
+            <td th:text="${x.deadline}"></td>
+            <td>
+                <span th:if="${x.status.equals('REQUEST')}">수락 대기중</span>
+                <span th:if="${x.status.equals('ACCEPT')}">수락</span>
+                <span th:if="${x.status.equals('REFUSE')}">거절</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

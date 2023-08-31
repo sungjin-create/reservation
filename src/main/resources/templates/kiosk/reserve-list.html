@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>예약 확인 목록</title>
+
+    <style>
+        .list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .list table th, .list table td {
+            border: solid 1px #000;
+        }
+
+        .list button {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<h1>예약 확인 목록</h1>
+
+<a href="/kiosk/reservation">홈으로 가기</a>
+
+<div class="list">
+    <table>
+        <thead>
+        <tr>
+            <th>인원수</th>
+            <th>예약시간</th>
+            <th>예약 마감 시간</th>
+            <th>도착 확인</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="x : ${reserveList}">
+            <td th:text="${x.numberOfPeople}">4</td>
+            <td th:text="${x.reserveDt}">21:10</td>
+            <td th:text="${x.deadline}">21:00</td>
+            <td>
+                <form method="post" action="/kiosk/reservation/check">
+                    <input type="hidden" name="reserveId" th:value="${x.id}">
+                    <button type="submit">도착 확인</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

@@ -19,7 +19,7 @@ public class CustomUser implements UserDetails {
     private String phone;
     private String password;
     private LocalDateTime registerDate;
-    private boolean isManger;
+    private boolean managerYn;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

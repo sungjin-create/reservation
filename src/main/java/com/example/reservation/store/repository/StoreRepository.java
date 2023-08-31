@@ -13,4 +13,14 @@ public interface StoreRepository extends JpaRepository<Store, Integer> {
 
     List<Store> getStoreByEmail(String email);
 
+    Optional<Store> findStoreByEmail(String email);
+
+    List<Store> getStoreByOpenYnTrue();
+
+    Optional<Store> getStoreById(int storeId);
+
+    long countByOpenYnIsTrue();
+
+    long countByEmail(String email);
+
 }

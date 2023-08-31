@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>도착 확인 페이지</title>
+</head>
+<body>
+
+<a href="/kiosk/reservation">홈으로 가기</a>
+
+<div th:if="${result}">
+    <h1>예약 확인 완료</h1>
+</div>
+
+<div th:if="${result eq false}">
+    <h1>예약 확인 실패</h1>
+    <h2>예약 시간 초과</h2>
+</div>
+</body>
+</html>

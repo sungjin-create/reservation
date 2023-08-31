@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>리뷰 쓰기</title>
+</head>
+<body>
+<h1>회원 가입</h1>
+<div th:replace="/fragments/layout.html :: fragment-member-body-menu"></div>
+
+<form method="post" action="/member/review/write">
+
+    <div>
+        <input type="text" name="contents" placeholder="리뷰를 작성해주세요" required />
+    </div>
+
+    <div>
+        <input type="number" name="grade" placeholder="평점" min="1" max="5" required />
+    </div>
+    <div>
+        <input type="hidden" name="reserveId" th:value="${reserveId}">
+        <input type="hidden" name="storeId" th:value="${storeId}">
+        <button type="submit">작성 완료</button>
+    </div>
+</form>
+
+</body>
+</html>

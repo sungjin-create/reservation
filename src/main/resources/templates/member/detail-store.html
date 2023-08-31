@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>디테일 페이지</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            border: solid 1px #000;
+            text-align: center;
+        }
+
+        button {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<h1>상점 상세페이지</h1>
+<div th:replace="/fragments/layout.html :: fragment-member-body-menu"></div>
+
+<table>
+    <thead>
+    <tr>
+        <th>상점명</th>
+        <th>상점 위치</th>
+        <th>상점 설명</th>
+        <th>예약하기</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${storeModel.name}"></td>
+        <td th:text="${storeModel.location}"></td>
+        <td th:text="${storeModel.description}"></td>
+        <td>
+            <form method="get" action="/member/reserve/store">
+                <input type="hidden" name="storeId" th:value="${storeModel.id}">
+                <div style="text-align: center">
+                    <button type="submit">예약 하기</button>
+                </div>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<br>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>리뷰</th>
+            <th>평점</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="x: ${reviewList}">
+            <td th:text="${x.contents}"></td>
+            <td th:text="${x.grade}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+<br>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>내가 쓴 리뷰</th>
+            <th>평점</th>
+            <th>수정</th>
+            <th>삭제</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:if="${myReviewExist}">
+            <td th:text="${myReview.contents}"></td>
+            <td th:text="${myReview.grade}"></td>
+            <td>
+               <form method="post" action="/review/update">
+                   <input type="hidden" name="reviewId" th:value="${myReview.id}">
+                   <button type="submit">수정하기</button>
+               </form>
+            </td>
+            <td>
+                <form method="post" action="/review/delete">
+                    <input type="hidden" name="reviewId" th:value="${myReview.id}">
+                    <button type="submit">삭제하기</button>
+                </form>
+            </td>
+        </tr>
+        <tr th:if="${myReviewExist eq false}">
+            <td colspan="4"> 아직 내가 쓴 리뷰가 없습니다. </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

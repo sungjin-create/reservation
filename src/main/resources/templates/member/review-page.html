@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>리뷰 페이지</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            border: solid 1px #000;
+            text-align: center;
+        }
+
+        button {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<h1>리뷰 작성하기</h1>
+<div th:replace="/fragments/layout.html :: fragment-member-body-menu"></div>
+
+<table>
+    <thead>
+    <tr>
+        <th>상점명</th>
+        <th>인원수</th>
+        <th>리뷰 작성하러 가기</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="x:${reserveList}">
+        <td th:text="${x.store.name}"></td>
+        <td th:text="${x.numberOfPeople}"></td>
+        <td>
+            <form method="post" action="/member/review/write/page">
+                <input type="hidden" name="reserveId" th:value="${x.id}"/>
+                <input type="hidden" name="storeId" th:value="${x.store.id}"/>
+                <button type="submit">리뷰 작성하기</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
