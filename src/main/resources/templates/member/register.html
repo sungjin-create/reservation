@@ -8,7 +8,6 @@
     <h1>회원 가입</h1>
     <div th:replace="/fragments/layout.html :: fragment-body-menu"></div>
 
-    <div th:text="${errorMessage}">
     </div>
     <form method="post">
 
@@ -26,9 +25,6 @@
 
         <div>
             <input type="password" name="password" placeholder="비밀번호 입력" required />
-        </div>
-        <div>
-            <input type="password" name="rePassword" placeholder="비밀번호 입력 확인" required/>
         </div>
         <div>
             매장 매니저입니까?<input type="checkbox" name="managerYn">

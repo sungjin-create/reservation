@@ -5,7 +5,6 @@ import com.example.reservation.exception.UnExistStoreException;
 import com.example.reservation.exception.UserNotFoundException;
 import com.example.reservation.member.entity.Member;
 import com.example.reservation.member.repository.MemberRepository;
-import com.example.reservation.reserve.entity.ArriveCheck;
 import com.example.reservation.reserve.entity.Reserve;
 import com.example.reservation.reserve.entity.ReserveStatus;
 import com.example.reservation.reserve.model.ReservationProcess;
@@ -18,13 +17,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Time;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static com.example.reservation.reserve.entity.ArriveCheck.*;
 import static com.example.reservation.reserve.entity.ReserveStatus.*;

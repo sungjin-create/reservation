@@ -1,7 +1,6 @@
 package com.example.reservation.review.repository;
 
 import com.example.reservation.review.entity.Review;
-import com.example.reservation.store.entity.Store;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,5 @@
 package com.example.reservation.review.service;
 
-import com.example.reservation.exception.UnExistReviewException;
 import com.example.reservation.exception.UnExistStoreException;
 import com.example.reservation.reserve.entity.Reserve;
 import com.example.reservation.reserve.entity.ReserveStatus;

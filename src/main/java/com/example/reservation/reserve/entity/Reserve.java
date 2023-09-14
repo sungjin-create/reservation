@@ -4,9 +4,7 @@ import com.example.reservation.store.entity.Store;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Getter
 @Setter

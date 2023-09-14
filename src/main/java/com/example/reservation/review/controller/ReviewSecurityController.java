@@ -2,7 +2,6 @@ package com.example.reservation.review.controller;
 
 import com.example.reservation.reserve.model.ReserveDto;
 import com.example.reservation.review.model.ReviewInput;
-import com.example.reservation.review.model.ReviewModel;
 import com.example.reservation.review.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -21,6 +20,7 @@ public class ReviewSecurityController {
 
     private final ReviewService reviewService;
 
+    //리뷰 작성이 가능한 리뷰들만 모아서 페이지로 열기
     @GetMapping("/member/review/page")
     public ModelAndView getReviewPage(Authentication authentication) {
 
@@ -40,7 +40,7 @@ public class ReviewSecurityController {
         return userDetails.getUsername();
     }
 
-
+    //리뷰 작성 페이지
     @PostMapping("/member/review/write/page")
     public ModelAndView getReviewPage(HttpServletRequest request) {
         int reserveId = Integer.parseInt(request.getParameter("reserveId"));
@@ -52,6 +52,7 @@ public class ReviewSecurityController {
         return modelAndView;
     }
 
+    //리뷰 작성 api
     @PostMapping("/member/review/write")
     public ModelAndView addReview(Authentication authentication, ReviewInput reviewInput) {
         String email = getUserEmail(authentication);
